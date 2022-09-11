@@ -41,9 +41,11 @@ public class PlayerJoint implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         String worldName = main.config.getString("World");
-        if(worldName != null || !worldName.equals("")) {
-            Location Spawn = getSpawn(YamlConfiguration.loadConfiguration(main.configfile));
-            event.getPlayer().teleport(Spawn);
+        if(worldName != null) {
+            if (!worldName.equals("")) {
+                Location Spawn = getSpawn(YamlConfiguration.loadConfiguration(main.configfile));
+                event.getPlayer().teleport(Spawn);
+            }
         }
 
     }
