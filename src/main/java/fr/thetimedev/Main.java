@@ -1,5 +1,6 @@
 package fr.thetimedev;
 
+import fr.thetimedev.Listener.PlayerJoint;
 import fr.thetimedev.commands.CommandSpawn;
 import fr.thetimedev.commands.ConfigReload;
 import fr.thetimedev.commands.SetSpawn;
@@ -54,7 +55,7 @@ public class Main extends JavaPlugin {
         getCommand("spawn").setExecutor(new CommandSpawn(this));
         getCommand("setspawn").setExecutor(new SetSpawn(this));
         getCommand("readspawn-reload").setExecutor(new ConfigReload(this));
-        //this.getServer().getPluginManager().registerEvents(new FreeBuildListeners(this), this);  SERA PLUS TARD
+        this.getServer().getPluginManager().registerEvents(new PlayerJoint(this), this);
     }
 
     @Override

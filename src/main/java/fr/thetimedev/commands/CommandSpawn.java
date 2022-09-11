@@ -20,10 +20,10 @@ public class CommandSpawn implements CommandExecutor {
 
     Logger LOGGER = getLogger();
 
-    private final Main explodium;
+    private final Main main;
 
-    public CommandSpawn(Main explodium){
-        this.explodium = explodium;
+    public CommandSpawn(Main main){
+        this.main = main;
     }
 
     @Override
@@ -31,24 +31,24 @@ public class CommandSpawn implements CommandExecutor {
         if(sender instanceof Player) {
             Player player = (Player) sender;
             if(!player.hasPermission("readspawn.spawn")) {
-                String message = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.no_permission").replace('&', '§') ;
+                String message = main.config.getString("messages.prefix").replace('&', '§')  + main.config.getString("messages.no_permission").replace('&', '§') ;
                 if(message.equals("")) {
                     message = "[§6ReadSpawn§f] §cVous n'avez pas la permission pour execter cette commande !";
                 }
                 player.sendMessage(message);
                 return true;
             }
-            String worldName = explodium.config.getString("World");
+            String worldName = main.config.getString("World");
             if(worldName == null || worldName.equals("")) {
-                String error = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.spawn_error").replace('&', '§') ;
+                String error = main.config.getString("messages.prefix").replace('&', '§')  + main.config.getString("messages.spawn_error").replace('&', '§') ;
                 if(error.equals("")) {
                     error = "[§6ReadSpawn§f] §4Aucune configuration n'a été faite pour le spawn.";
                 }
                 player.sendMessage(error);
                return true;
             }else {
-                player.teleport(parseStringToLoc(YamlConfiguration.loadConfiguration(explodium.configfile), player));
-                String sucess = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.spawn_success").replace('&', '§') ;
+                player.teleport(parseStringToLoc(YamlConfiguration.loadConfiguration(main.configfile), player));
+                String sucess = main.config.getString("messages.prefix").replace('&', '§')  + main.config.getString("messages.spawn_success").replace('&', '§') ;
                 if(sucess.equals("")) {
                     sucess = "[§6ReadSpawn§f] Vous avez été téléporter au spawn !";
                 }

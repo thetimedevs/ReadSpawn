@@ -19,23 +19,23 @@ public class SetSpawn implements CommandExecutor {
 
     Logger LOGGER = getLogger();
 
-    private Main explodium;
+    private Main main;
 
-    public SetSpawn(Main explodium){
-        this.explodium = explodium;
+    public SetSpawn(Main main){
+        this.main = main;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(sender instanceof Player) {
             try {
-                explodium.config.load(explodium.configfile);
+                main.config.load(main.configfile);
             } catch (IOException | InvalidConfigurationException e) {
                 e.printStackTrace();
             }
             Player player = (Player)sender;
             if(!player.hasPermission("readspawn.setspawn")) {
-                String message = explodium.config.getString("messages.prefix") + explodium.config.getString("messages.no_permission");
+                String message = main.config.getString("messages.prefix") + main.config.getString("messages.no_permission");
                 if(message.equals("")) {
                     message = "[§6ReadSpawn§f] §cVous n'avez pas la permission pour execter cette commande !";
                 }
@@ -56,21 +56,21 @@ public class SetSpawn implements CommandExecutor {
                 worldName = getServer().getWorlds().get(0).getName();
                 LOGGER.warning("Unknown World! Using \"" + worldName + "\".");
             }
-            explodium.config.set("X", X);
-            explodium.config.set("Y", Y);
-            explodium.config.set("Z", Z);
-            explodium.config.set("pitch", pitch);
-            explodium.config.set("yaw", yaw);
-            explodium.config.set("World", worldName);
+            main.config.set("X", X);
+            main.config.set("Y", Y);
+            main.config.set("Z", Z);
+            main.config.set("pitch", pitch);
+            main.config.set("yaw", yaw);
+            main.config.set("World", worldName);
             try {
-                explodium.config.save(explodium.configfile);
-                String sucess = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.setspawn_success").replace('&', '§') ;
+                main.config.save(main.configfile);
+                String sucess = main.config.getString("messages.prefix").replace('&', '§')  + main.config.getString("messages.setspawn_success").replace('&', '§') ;
                 if(sucess.equals("")) {
                     sucess = "[§6ReadSpawn§f] §aLa position du spawn à bien été modifié !";
                 }
                 player.sendMessage(sucess);
             } catch (IOException e) {
-                String error = explodium.config.getString("messages.prefix").replace('&', '§') + explodium.config.getString("messages.setspawn_success").replace('&', '§') ;
+                String error = main.config.getString("messages.prefix").replace('&', '§') + main.config.getString("messages.setspawn_success").replace('&', '§') ;
                 if(error.equals("")) {
                     error = "[§6ReadSpawn§f] §aLa position du spawn à bien été modifié !";
                 }
