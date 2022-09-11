@@ -34,10 +34,10 @@ public class SetSpawn implements CommandExecutor {
                 e.printStackTrace();
             }
             Player player = (Player)sender;
-            if(!player.hasPermission("freebuild.setspawn")) {
+            if(!player.hasPermission("readspawn.setspawn")) {
                 String message = explodium.config.getString("messages.prefix") + explodium.config.getString("messages.no_permission");
                 if(message.equals("")) {
-                    message = "§cVous n'avez pas la permission pour execter cette commande !";
+                    message = "[§6ReadSpawn§f] §cVous n'avez pas la permission pour execter cette commande !";
                 }
                 player.sendMessage(message);
                 return true;
@@ -66,13 +66,13 @@ public class SetSpawn implements CommandExecutor {
                 explodium.config.save(explodium.configfile);
                 String sucess = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.setspawn_success").replace('&', '§') ;
                 if(sucess.equals("")) {
-                    sucess = "[§6FreeBuild-Explo§f] §aLa position du spawn à bien été modifié !";
+                    sucess = "[§6ReadSpawn§f] §aLa position du spawn à bien été modifié !";
                 }
                 player.sendMessage(sucess);
             } catch (IOException e) {
                 String error = explodium.config.getString("messages.prefix").replace('&', '§') + explodium.config.getString("messages.setspawn_success").replace('&', '§') ;
                 if(error.equals("")) {
-                    error = "[§6FreeBuild-Explo§f] §aLa position du spawn à bien été modifié !";
+                    error = "[§6ReadSpawn§f] §aLa position du spawn à bien été modifié !";
                 }
                 player.sendMessage(error);
                 e.printStackTrace();

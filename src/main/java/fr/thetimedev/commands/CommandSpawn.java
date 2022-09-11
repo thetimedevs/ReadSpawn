@@ -30,10 +30,10 @@ public class CommandSpawn implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
-            if(!player.hasPermission("freebuild.spawn")) {
+            if(!player.hasPermission("readspawn.spawn")) {
                 String message = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.no_permission").replace('&', '§') ;
                 if(message.equals("")) {
-                    message = "[§6FreeBuild-Explo§f] §cVous n'avez pas la permission pour execter cette commande !";
+                    message = "[§6ReadSpawn§f] §cVous n'avez pas la permission pour execter cette commande !";
                 }
                 player.sendMessage(message);
                 return true;
@@ -42,7 +42,7 @@ public class CommandSpawn implements CommandExecutor {
             if(worldName == null || worldName.equals("")) {
                 String error = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.spawn_error").replace('&', '§') ;
                 if(error.equals("")) {
-                    error = "[§6FreeBuild-Explo§f] §4Aucune configuration n'a été faite pour le spawn.";
+                    error = "[§6ReadSpawn§f] §4Aucune configuration n'a été faite pour le spawn.";
                 }
                 player.sendMessage(error);
                return true;
@@ -50,7 +50,7 @@ public class CommandSpawn implements CommandExecutor {
                 player.teleport(parseStringToLoc(YamlConfiguration.loadConfiguration(explodium.configfile), player));
                 String sucess = explodium.config.getString("messages.prefix").replace('&', '§')  + explodium.config.getString("messages.spawn_success").replace('&', '§') ;
                 if(sucess.equals("")) {
-                    sucess = "[§6FreeBuild-Explo§f] Vous avez été téléporter au spawn !";
+                    sucess = "[§6ReadSpawn§f] Vous avez été téléporter au spawn !";
                 }
                 player.sendMessage(sucess);
             }

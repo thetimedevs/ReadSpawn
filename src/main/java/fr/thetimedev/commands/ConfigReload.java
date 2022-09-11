@@ -23,10 +23,10 @@ public class ConfigReload implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
-        if (!sender.hasPermission("freebuild.reload")) {
+        if (!sender.hasPermission("readspawn.reload")) {
             String message = main.config.getString("messages.prefix") + main.config.getString("messages.no_permission");
             if (message.equals("")) {
-                message = "§cVous n'avez pas la permission pour execter cette commande !";
+                message = "[§6ReadSpawn§f] §cVous n'avez pas la permission pour execter cette commande !";
             }
             sender.sendMessage(message);
             return true;
@@ -39,7 +39,7 @@ public class ConfigReload implements CommandExecutor {
         }
         String message = main.config.getString("messages.prefix") + main.config.getString("messages.reload_success");
         if(message.equals("")) {
-            message = "§aConfig Reloaded!";
+            message = "[§6ReadSpawn§f] §aConfig Reloaded!";
         }
         sender.sendMessage(message);
         return true;
