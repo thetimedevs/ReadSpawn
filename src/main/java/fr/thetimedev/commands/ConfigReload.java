@@ -24,7 +24,7 @@ public class ConfigReload implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
         if (!sender.hasPermission("readspawn.reload")) {
-            String message = main.config.getString("messages.prefix") + main.config.getString("messages.no_permission");
+            String message = main.config.getString("messages.prefix").replace('&', '§') + main.config.getString("messages.no_permission").replace('&', '§');
             if (message.equals("")) {
                 message = "[§6ReadSpawn§f] §cVous n'avez pas la permission pour execter cette commande !";
             }
@@ -37,7 +37,7 @@ public class ConfigReload implements CommandExecutor {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-        String message = main.config.getString("messages.prefix") + main.config.getString("messages.reload_success");
+        String message = main.config.getString("messages.prefix").replace('&', '§') + main.config.getString("messages.reload_success").replace('&', '§');
         if(message.equals("")) {
             message = "[§6ReadSpawn§f] §aConfig Reloaded!";
         }
