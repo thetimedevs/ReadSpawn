@@ -1,0 +1,12 @@
+name: ${project.name}
+version: ${project.version}
+author: TheTimeDev_
+api-version: 1.13
+main: fr.thetimedev.Main
+commands:
+  spawn:
+    description: Commande de spawn
+  setspawn:
+    description: Commande pour set la position du spawn
+  readspawn-reload:
+    description: Commande de reload de la config
